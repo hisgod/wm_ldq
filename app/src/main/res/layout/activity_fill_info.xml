@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.aib.view.activity.FillInfoActivity.Presenter" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.aib.view.activity.FillInfoActivity">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tb"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:background="@color/colorAccent"
+            app:contentInsetStart="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    style="?toolbarNavigationButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:onClick="@{presenter::back}"
+                    android:src="@drawable/ic_back_white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="填写资料"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{presenter::isShow}"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="请填写真实资料，确保审核通过"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_fillinfo_x" />
+        </LinearLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    app:divider="@drawable/shape_segmenting_line"
+                    app:dividerPadding="20dp"
+                    app:showDividers="middle">
+
+                    <LinearLayout
+                        android:id="@+id/ll_parent1"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:clickable="true"
+                        android:foreground="?selectableItemBackground"
+                        android:gravity="center"
+                        android:onClick="@{presenter::isVisibleBasic}"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/ic_fillinfo_basic" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="基本信息"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tv_tip1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/select_fillinfo_group_tip"
+                            android:drawablePadding="10dp"
+                            android:gravity="center"
+                            android:text="未完成" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:id="@+id/ll_child1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="vertical"
+
+                        app:divider="@drawable/shape_segmenting_line"
+                        app:dividerPadding="10dp"
+                        app:showDividers="middle">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="申请资金"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+
+                            <EditText
+                                android:id="@+id/et_apply_money"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:gravity="right|center_vertical"
+                                android:hint="请填写借款金额"
+                                android:inputType="number"
+                                android:maxLength="5"
+                                android:onTextChanged="@{()->presenter.founds()}"
+                                android:singleLine="true"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="元"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="姓名"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+
+                            <EditText
+                                android:id="@+id/et_name"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:gravity="center_vertical|right"
+                                android:hint="请填写您的姓名"
+                                android:singleLine="true"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="手机号"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+
+                            <EditText
+                                android:id="@+id/et_phone"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:gravity="right|center_vertical"
+                                android:hint="请填写手机号"
+                                android:inputType="number"
+                                android:maxLength="11"
+                                android:singleLine="true"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="身份证号"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+
+                            <EditText
+                                android:id="@+id/et_cid"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:gravity="center_vertical|right"
+                                android:hint="请填写18位身份证号"
+                                android:maxLength="18"
+                                android:singleLine="true"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:clickable="true"
+                            android:foreground="?selectableItemBackground"
+                            android:onClick="@{presenter::selectAddress}"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="户籍所在地"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_address"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:drawableRight="@drawable/ic_fillinfo_more"
+                                android:drawablePadding="5dp"
+                                android:gravity="center"
+                                android:text="请选择"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+                        </RelativeLayout>
+                    </android.support.v7.widget.LinearLayoutCompat>
+
+                    <!--中间部分-->
+                    <LinearLayout
+                        android:id="@+id/ll_parent2"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:foreground="?selectableItemBackground"
+                        android:gravity="center"
+                        android:onClick="@{presenter::isVisibleContact}"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/ic_fillinfo_contact" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="联系人信息"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tv_tip2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/select_fillinfo_group_tip"
+                            android:drawablePadding="10dp"
+                            android:gravity="center"
+                            android:text="未完成" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:id="@+id/ll_child2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:divider="@drawable/shape_segmenting_line"
+                        app:dividerPadding="10dp"
+                        app:showDividers="middle">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="常用联系人姓名"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+
+                            <EditText
+                                android:id="@+id/et_relation_name1"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:gravity="right|center_vertical"
+                                android:hint="姓名"
+                                android:singleLine="true"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:onClick="@{presenter::showRelation1}"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="常用联系人关系"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_relation1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:drawableRight="@drawable/ic_fillinfo_more"
+                                android:drawablePadding="5dp"
+                                android:gravity="center"
+                                android:text="请选择"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="常用联系人手机"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+
+                            <EditText
+                                android:id="@+id/et_relation_phone1"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:gravity="center_vertical|right"
+                                android:hint="手机号"
+                                android:inputType="number"
+                                android:maxLength="11"
+                                android:singleLine="true"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="第二联系人姓名"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+
+                            <EditText
+                                android:id="@+id/et_relation_name2"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:gravity="right|center_vertical"
+                                android:hint="姓名"
+                                android:singleLine="true"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:onClick="@{presenter::showRelation2}"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="第二联系人关系"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_relation2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:drawableRight="@drawable/ic_fillinfo_more"
+                                android:drawablePadding="5dp"
+                                android:text="请选择"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="第二联系人手机"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+
+                            <EditText
+                                android:id="@+id/et_relation_phone2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:background="@android:color/transparent"
+                                android:gravity="center"
+                                android:hint="手机号"
+                                android:inputType="number"
+                                android:singleLine="true"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+                        </RelativeLayout>
+                    </android.support.v7.widget.LinearLayoutCompat>
+
+                    <!--最后部分-->
+                    <LinearLayout
+                        android:id="@+id/ll_parent3"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:clickable="true"
+                        android:foreground="?selectableItemBackground"
+                        android:gravity="center"
+                        android:onClick="@{presenter::isVisibleWork}"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/ic_fillinfo_work" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="工作信息"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tv_tip3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/select_fillinfo_group_tip"
+                            android:drawablePadding="10dp"
+                            android:gravity="center"
+                            android:text="未完成" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:id="@+id/ll_child3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:divider="@drawable/shape_segmenting_line"
+                        app:dividerPadding="10dp"
+                        app:showDividers="middle">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="公司名字"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+
+                            <EditText
+                                android:id="@+id/et_company_name"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:gravity="right|center_vertical"
+                                android:hint="请填写公司名字"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="公司电话"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+
+                            <EditText
+                                android:id="@+id/et_company_phone"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:gravity="right|center_vertical"
+                                android:hint="请填公司电话"
+                                android:singleLine="true"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="月收入"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+
+                            <EditText
+                                android:id="@+id/et_month_money"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:gravity="right|center_vertical"
+                                android:hint="请输入金额"
+                                android:inputType="number"
+                                android:maxLength="7"
+                                android:singleLine="true"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="芝麻分"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+
+                            <EditText
+                                android:maxLength="4"
+                                android:id="@+id/et_company_address"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:gravity="center_vertical|right"
+                                android:hint="请输入芝麻分"
+                                android:inputType="number"
+                                android:singleLine="true"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </android.support.v7.widget.LinearLayoutCompat>
+                </android.support.v7.widget.LinearLayoutCompat>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:text="申请有礼：送最高百万意外保障，我已阅读"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_agreement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:onClick="@{presenter::agreement}"
+                        android:text="投保须知"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="投资人与借款人在本平台之外发生的借贷,贸易等任何交易行为，投资人应本着谨慎注意的原则，谨防上当受骗，若发生此类情形，本平台不承担法律责任。"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/btn_commit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/colorAccent"
+            android:onClick="@{presenter::enterStatus}"
+            android:text="提交资料"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+</layout>
+

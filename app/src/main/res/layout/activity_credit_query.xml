@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="price"
+            type="java.lang.Double" />
+
+        <variable
+            name="presenter"
+            type="com.aib.view.activity.CreditQueryActivity.Presenter" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.aib.view.activity.CreditQueryActivity">
+
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@android:color/transparent"
+                app:elevation="0dp">
+
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_scrollFlags="scroll">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/ic_credit_query_top"
+                        app:layout_collapseMode="parallax" />
+                </android.support.design.widget.CollapsingToolbarLayout>
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="5dp">
+
+                        <EditText
+                            android:id="@+id/et_name"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_credit_query_name"
+                            android:drawablePadding="20dp"
+                            android:hint="请填写真实姓名"
+                            android:textColorHint="@color/color_707070"
+                            android:textSize="14sp" />
+
+                        <Button
+                            android:id="@+id/btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:background="@drawable/shape_creidt_query_history_bg"
+                            android:onClick="@{presenter::queryCredit}"
+                            android:text="历史报告"
+                            android:textColor="@color/color_e93737"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/et_cid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:background="@android:color/transparent"
+                        android:drawableLeft="@drawable/ic_credit_query_id"
+                        android:drawablePadding="20dp"
+                        android:hint="请填写身份证号"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="10dp"
+                        android:textColorHint="@color/color_707070"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/et_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@android:color/transparent"
+                        android:drawableLeft="@drawable/ic_credit_query_phone"
+                        android:drawablePadding="31dp"
+                        android:hint="请填写手机号码"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="10dp"
+                        android:textColorHint="@color/color_707070"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:background="@color/color_f0f0f0" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="检测成本："
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@{String.valueOf(price)}"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <RadioGroup
+                        android:id="@+id/rg_pay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RadioButton
+                            android:id="@+id/rb_alipay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:background="@android:color/transparent"
+                            android:button="@android:color/transparent"
+                            android:checked="true"
+                            android:clickable="true"
+                            android:drawableLeft="@drawable/ic_credit_query_zfb"
+                            android:drawablePadding="20dp"
+                            android:drawableRight="@drawable/selector_credit_query_pay"
+                            android:foreground="?selectableItemBackground"
+                            android:gravity="center_vertical"
+                            android:paddingBottom="10dp"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:paddingTop="10dp"
+                            android:text="支付宝"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
+
+                        <!--<RadioButton-->
+                        <!--android:id="@+id/rb_wechat"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginBottom="20dp"-->
+                        <!--android:layout_marginTop="20dp"-->
+                        <!--android:background="@android:color/transparent"-->
+                        <!--android:button="@android:color/transparent"-->
+                        <!--android:clickable="true"-->
+                        <!--android:drawableLeft="@drawable/ic_credit_query_wechat"-->
+                        <!--android:drawablePadding="20dp"-->
+                        <!--android:drawableRight="@drawable/selector_credit_query_pay"-->
+                        <!--android:foreground="?selectableItemBackground"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:paddingBottom="10dp"-->
+                        <!--android:paddingLeft="15dp"-->
+                        <!--android:paddingRight="15dp"-->
+                        <!--android:paddingTop="10dp"-->
+                        <!--android:text="支付宝"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:textSize="16sp" />-->
+                    </RadioGroup>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/color_f0f0f0"
+                        android:padding="3dp">
+
+                        <CheckBox
+                            android:id="@+id/cb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:checked="true"
+                            android:text="我已同意小钱包用户协议及隐私声明及授权协议"
+                            android:textSize="12sp" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+        </android.support.design.widget.CoordinatorLayout>
+
+        <Button
+            android:id="@+id/btn_pay"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/color_e93737"
+            android:onClick="@{presenter::query}"
+            android:text="支付，获取检测结果"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+</layout>
+

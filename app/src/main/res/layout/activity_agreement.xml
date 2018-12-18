@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.aib.net.Status" />
+
+        <variable
+            name="resource"
+            type="com.aib.net.Resource" />
+
+        <variable
+            name="retry"
+            type="com.aib.utils.RetryCallback" />
+
+        <variable
+            name="entity"
+            type="com.aib.entity.AgreementEntity" />
+
+        <variable
+            name="presenter"
+            type="com.aib.view.activity.AgreementActivity.Presenter" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tb"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:background="@color/colorAccent"
+            android:onClick="@{presenter::scrollToTop}"
+            app:contentInsetStart="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    style="?toolbarNavigationButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:onClick="@{presenter::back}"
+                    android:src="@drawable/ic_back_white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="协议"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+
+        <com.aib.widget.StatusLayout
+            isEmpty="@{resource.status==Status.EMPTY}"
+            isError="@{resource.status==Status.ERROR}"
+            isLoading="@{resource.status==Status.LOADING}"
+            isSuccess="@{resource.status==Status.SUCCESS}"
+            retry="@{retry}"
+            showMsg="@{resource.msg}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/nsv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@{entity.content}"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+            </android.support.v4.widget.NestedScrollView>
+        </com.aib.widget.StatusLayout>
+    </LinearLayout>
+</layout>

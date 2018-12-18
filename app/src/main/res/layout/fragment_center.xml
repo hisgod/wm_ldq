@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.aib.view.fragment.CenterFragment.Presenter" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:contentInsetStart="0dp">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:divider="@drawable/shape_segmenting_line"
+            app:dividerPadding="10dp"
+            app:showDividers="middle|end">
+
+            <LinearLayout
+                android:id="@+id/ll_center"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/colorAccent"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:onClick="@{presenter::enterCenter}"
+                android:orientation="horizontal"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="20dp">
+
+                <ImageView
+                    android:id="@+id/iv"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:scaleType="centerCrop" />
+
+                <TextView
+                    android:id="@+id/tv_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/ic_arrow_right_white"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableLeft="@drawable/ic_center_order"
+                android:drawablePadding="10dp"
+                android:drawableRight="@drawable/ic_arrow_right_black"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center_vertical"
+                android:onClick="@{presenter::enterFootPrint}"
+                android:padding="15dp"
+                android:text="我的申请记录"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableLeft="@drawable/ic_center_credit"
+                android:drawablePadding="10dp"
+                android:drawableRight="@drawable/ic_arrow_right_black"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center_vertical"
+                android:onClick="@{presenter::enterHistory}"
+                android:padding="15dp"
+                android:text="征信报告"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableLeft="@drawable/ic_center_msg"
+                android:drawablePadding="10dp"
+                android:drawableRight="@drawable/ic_arrow_right_black"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center_vertical"
+                android:onClick="@{presenter::enterMsgCnter}"
+                android:padding="15dp"
+                android:text="消息中心"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_wechat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableLeft="@drawable/ic_center_wechat"
+                android:drawablePadding="10dp"
+                android:drawableRight="@drawable/ic_arrow_right_black"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center_vertical"
+                android:onClick="@{presenter::openWechat}"
+                android:padding="15dp"
+                android:text="客服中心"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+        </android.support.v7.widget.LinearLayoutCompat>
+    </LinearLayout>
+</layout>

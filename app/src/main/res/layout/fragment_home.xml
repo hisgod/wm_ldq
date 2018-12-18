@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.aib.net.Status" />
+
+        <variable
+            name="resource"
+            type="com.aib.net.Resource" />
+
+        <variable
+            name="retry"
+            type="com.aib.utils.RetryCallback" />
+    </data>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/srl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlEnableOverScrollBounce="false">
+
+        <!--<com.aib.widget.MoneyRefreshLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="80dp">-->
+
+        <!--<com.airbnb.lottie.LottieAnimationView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--app:lottie_autoPlay="true"-->
+        <!--app:lottie_fileName="refresh.json"-->
+        <!--app:lottie_loop="true" />-->
+        <!--</com.aib.widget.MoneyRefreshLayout>-->
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlDrawableSize="14dp"
+            app:srlTextSizeTitle="14sp" />
+
+        <com.aib.widget.StatusLayout
+            isEmpty="@{resource.status==Status.EMPTY}"
+            isError="@{resource.status==Status.ERROR}"
+            isLoading="@{resource.status==Status.LOADING}"
+            isSuccess="@{resource.status==Status.SUCCESS}"
+            retry="@{retry}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="@android:color/transparent"
+                    app:elevation="0dp">
+
+                    <android.support.design.widget.CollapsingToolbarLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        app:contentScrim="@color/colorAccent"
+                        app:layout_scrollFlags="scroll|enterAlwaysCollapsed|enterAlways">
+
+                        <com.youth.banner.Banner
+                            android:id="@+id/banner"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:delay_time="5000"
+                            app:indicator_drawable_selected="@color/colorAccent"
+                            app:indicator_drawable_unselected="@android:color/black"
+                            app:indicator_height="5dp"
+                            app:indicator_width="5dp"
+                            app:is_auto_play="true"
+                            app:layout_collapseMode="parallax"
+                            app:layout_collapseParallaxMultiplier="0.7" />
+                    </android.support.design.widget.CollapsingToolbarLayout>
+                </android.support.design.widget.AppBarLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/tb"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/toolbar_height"
+                    android:background="@color/colorPrimary"
+                    app:contentInsetStart="0dp"
+                    app:layout_behavior="@string/home_behavior">
+
+                    <RelativeLayout
+                        android:id="@+id/rl"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tv_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+                    </RelativeLayout>
+                </android.support.v7.widget.Toolbar>
+            </android.support.design.widget.CoordinatorLayout>
+        </com.aib.widget.StatusLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</layout>

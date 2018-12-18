@@ -1,0 +1,379 @@
+apply plugin: 'com.android.application'
+
+//------------------------------------ Kotlin---------------------------------------------
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+//------------------------------------ Kotlin---------------------------------------------
+
+//--------------------------------------全局变量--------------------------------------------------
+//-------------------------小钱包系列包名------------------------
+String package_name_xqb = "cn.com.kingwins.wmloan"
+int versionCode_xqb = 62
+String versionName_xqb = "1.1.28"
+//-------------------------小钱包系列包名------------------------
+
+//-------------来点钱系列包名--------------
+String package_name_ldq = "com.wm.loan"
+//-------------来点钱系列包名--------------
+//---------------------------------------全局变量-------------------------------------------------
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId package_name_ldq
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 5
+        versionName "1.0.4"
+        flavorDimensions "aib"  //多渠道打包
+
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'//, 'x86', 'x86_64'
+        }
+
+        //----------------------------------------MultiDex--------------------------------------------------
+        multiDexEnabled true
+        //----------------------------------------MultiDex--------------------------------------------------
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        //注释：来点钱和小钱包由于包名不一致，极光申请的Key，需要包名，所以极光Key是2个
+        //------------------------------------------小钱包--------------------------------------------------------
+        xqb_yyb {
+            applicationId package_name_xqb
+            versionCode versionCode_xqb
+            versionName versionName_xqb
+            manifestPlaceholders = [
+                    "BaiduMobAd_CHANNEL": "小钱包_应用宝",
+                    "package"           : applicationId,
+                    //----------------百度统计-----------------
+                    "BaiduMobAd_STAT_ID": "9d0b55b141",
+                    //----------------百度统计-----------------
+
+                    //---------------极光推送-------------------
+                    JPUSH_PKGNAME       : applicationId,
+                    JPUSH_APPKEY        : "f85a37db09473f2708f0f221",
+                    JPUSH_CHANNEL       : "developer-default",
+                    //---------------极光推送-------------------
+            ]
+        }
+
+        xqb_hw {
+            applicationId package_name_xqb
+            versionCode 56
+            versionName "1.1.22"
+            manifestPlaceholders = [
+                    "BaiduMobAd_CHANNEL": "小钱包_华为",
+                    "package"           : applicationId,
+                    //----------------百度统计-----------------
+                    "BaiduMobAd_STAT_ID": "9d0b55b141",
+                    //----------------百度统计-----------------
+
+                    //---------------极光推送-------------------
+                    JPUSH_PKGNAME       : applicationId,
+                    JPUSH_APPKEY        : "f85a37db09473f2708f0f221",
+                    JPUSH_CHANNEL       : "developer-default",
+                    //---------------极光推送-------------------
+            ]
+        }
+
+        xqb_xiaomi {
+            applicationId package_name_xqb
+            versionCode versionCode_xqb
+            versionName versionName_xqb
+            manifestPlaceholders = [
+                    "BaiduMobAd_CHANNEL": "小钱包_小米",
+                    "package"           : applicationId,
+                    //----------------百度统计-----------------
+                    "BaiduMobAd_STAT_ID": "9d0b55b141",
+                    //----------------百度统计-----------------
+
+                    //---------------极光推送-------------------
+                    JPUSH_PKGNAME       : applicationId,
+                    JPUSH_APPKEY        : "f85a37db09473f2708f0f221",
+                    JPUSH_CHANNEL       : "developer-default",
+                    //---------------极光推送-------------------
+            ]
+        }
+
+        xqb_vivo {
+            applicationId package_name_xqb
+            versionCode versionCode_xqb
+            versionName versionName_xqb
+            manifestPlaceholders = [
+                    "BaiduMobAd_CHANNEL": "小钱包_vivo",
+                    "package"           : applicationId,
+                    //----------------百度统计-----------------
+                    "BaiduMobAd_STAT_ID": "9d0b55b141",
+                    //----------------百度统计-----------------
+
+                    //---------------极光推送-------------------
+                    JPUSH_PKGNAME       : applicationId,
+                    JPUSH_APPKEY        : "f85a37db09473f2708f0f221",
+                    JPUSH_CHANNEL       : "developer-default",
+                    //---------------极光推送-------------------
+            ]
+        }
+
+        xqb_h5 {
+            applicationId package_name_xqb
+            versionCode versionCode_xqb
+            versionName versionName_xqb
+            manifestPlaceholders = [
+                    "BaiduMobAd_CHANNEL": "小钱包_H5",
+                    "package"           : applicationId,
+                    //----------------百度统计-----------------
+                    "BaiduMobAd_STAT_ID": "9d0b55b141",
+                    //----------------百度统计-----------------
+
+                    //---------------极光推送-------------------
+                    JPUSH_PKGNAME       : applicationId,
+                    JPUSH_APPKEY        : "f85a37db09473f2708f0f221",
+                    JPUSH_CHANNEL       : "developer-default",
+                    //---------------极光推送-------------------
+            ]
+        }
+        //-----------------------------------------------小钱包----------------------------------------------------
+        //--------------------------------------------------来点钱-------------------------------------------------
+        ldq_yyb {
+            applicationId package_name_ldq
+            manifestPlaceholders = [
+                    "BaiduMobAd_CHANNEL": "来点钱_应用宝",
+                    "package"           : applicationId,
+                    //----------------百度统计-----------------
+                    "BaiduMobAd_STAT_ID": "9d0b55b141",
+                    //----------------百度统计-----------------
+
+                    //---------------极光推送-------------------
+                    JPUSH_PKGNAME       : applicationId,
+                    JPUSH_APPKEY        : "de270da3e24bbb19158ca860",
+                    JPUSH_CHANNEL       : "developer-default",
+                    //---------------极光推送-------------------
+            ]
+        }
+
+        ldq_hw {
+            applicationId package_name_ldq
+            versionCode 56
+            versionName "1.1.22"
+            manifestPlaceholders = [
+                    "BaiduMobAd_CHANNEL": "来点钱_华为",
+                    "package"           : applicationId,
+                    //----------------百度统计-----------------
+                    "BaiduMobAd_STAT_ID": "9d0b55b141",
+                    //----------------百度统计-----------------
+
+                    //---------------极光推送-------------------
+                    JPUSH_PKGNAME       : applicationId,
+                    JPUSH_APPKEY        : "de270da3e24bbb19158ca860",
+                    JPUSH_CHANNEL       : "developer-default",
+                    //---------------极光推送-------------------
+            ]
+        }
+
+        ldq_xiaomi {
+            applicationId package_name_ldq
+            manifestPlaceholders = [
+                    "BaiduMobAd_CHANNEL": "来点钱_小米",
+                    "package"           : applicationId,
+                    //----------------百度统计-----------------
+                    "BaiduMobAd_STAT_ID": "9d0b55b141",
+                    //----------------百度统计-----------------
+
+                    //---------------极光推送-------------------
+                    JPUSH_PKGNAME       : applicationId,
+                    JPUSH_APPKEY        : "de270da3e24bbb19158ca860",
+                    JPUSH_CHANNEL       : "developer-default",
+                    //---------------极光推送-------------------
+            ]
+        }
+
+        ldq_vivo {
+            applicationId package_name_ldq
+            manifestPlaceholders = [
+                    "BaiduMobAd_CHANNEL": "来点钱_vivo",
+                    "package"           : applicationId,
+                    //----------------百度统计-----------------
+                    "BaiduMobAd_STAT_ID": "9d0b55b141",
+                    //----------------百度统计-----------------
+
+                    //---------------极光推送-------------------
+                    JPUSH_PKGNAME       : applicationId,
+                    JPUSH_APPKEY        : "de270da3e24bbb19158ca860",
+                    JPUSH_CHANNEL       : "developer-default",
+                    //---------------极光推送-------------------
+            ]
+        }
+
+        ldq_h5 {
+            applicationId package_name_ldq
+            manifestPlaceholders = [
+                    "BaiduMobAd_CHANNEL": "来点钱_H5",
+                    "package"           : applicationId,
+                    //----------------百度统计-----------------
+                    "BaiduMobAd_STAT_ID": "9d0b55b141",
+                    //----------------百度统计-----------------
+
+                    //---------------极光推送-------------------
+                    JPUSH_PKGNAME       : applicationId,
+                    JPUSH_APPKEY        : "de270da3e24bbb19158ca860",
+                    JPUSH_CHANNEL       : "developer-default",
+                    //---------------极光推送-------------------
+            ]
+        }
+        //------------------------------------------来点钱--------------------------------------------------------
+    }
+
+    //------------------------------------------dataBinding--------------------------------------------------------
+    dataBinding {
+        enabled true
+    }
+    //------------------------------------------dataBinding--------------------------------------------------------
+
+    //----------------------------------------MultiDex--------------------------------------------------
+    //防止编译OOM
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+    //----------------------------------------MultiDex--------------------------------------------------
+
+    //----------------------------------------自定义apk名字及输出路径--------------------------------------------------
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            // 自定义输出路径
+            variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + File.separator + "outputs")
+            // 自定义文件名{示例：AppName-Flavor-debug-v1.0.0}
+            outputFileName = "App-${variant.flavorName}-${variant.buildType.name}-V${variant.versionName}.apk"
+        }
+    }
+    //----------------------------------------自定义apk名字及输出路径--------------------------------------------------
+}
+
+//------------------------------------------Kotlin--------------------------------------------------------
+kapt {
+    generateStubs = true
+}
+//------------------------------------------Kotlin--------------------------------------------------------
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:support-v4:28.+'
+    implementation 'com.android.support:appcompat-v7:28.+'
+    implementation 'com.android.support:design:28.+'
+    implementation 'com.android.support:recyclerview-v7:28.+'
+    implementation 'com.android.support:cardview-v7:28.+'
+    implementation 'com.android.support:support-v13:28.+'
+
+    //AndroidUtilCode
+    implementation 'com.blankj:utilcode:1.18.5'
+
+    //Banner
+    implementation 'com.youth.banner:banner:1.4.10'
+
+    //SmartRefreshLayout
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1'
+
+    //rx
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+
+    //intercepter
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+
+    //dagger
+    implementation 'com.google.dagger:dagger:2.19'
+    kapt 'com.google.dagger:dagger-compiler:2.19'
+    implementation 'com.google.dagger:dagger-android:2.19'
+    implementation 'com.google.dagger:dagger-android-support:2.19'
+    kapt 'com.google.dagger:dagger-android-processor:2.19'
+
+    //livedata&viewmodel
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+
+    //Kotlin
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.10'
+
+    //EventBus
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
+    //album
+    implementation 'com.yanzhenjie:album:2.1.2'
+
+    //durban
+    implementation 'com.yanzhenjie:durban:1.0.1'
+
+    //photoView
+    implementation 'com.github.chrisbanes:PhotoView:2.1.4'
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    kapt 'com.github.bumptech.glide:compiler:4.8.0'
+
+    //flowlayout
+    implementation 'com.hyman:flowlayout-lib:1.1.2'
+
+    //极光推送
+    implementation 'cn.jiguang.sdk:jpush:3.1.5'
+    implementation 'cn.jiguang.sdk:jcore:1.2.3'
+
+    //内存泄露检测
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1'
+
+    //ultraviewpager
+    implementation('com.alibaba.android:ultraviewpager:1.0.7.7@aar') {
+        transitive = true
+    }
+
+    //Room
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    kapt "android.arch.persistence.room:compiler:1.1.1"
+    implementation 'android.arch.persistence.room:rxjava2:1.1.1'
+
+    //vlayout
+    implementation('com.alibaba.android:vlayout:1.2.8@aar') {
+        transitive = true
+    }
+
+    //multidex
+    implementation 'com.android.support:multidex:1.0.3'
+
+    //百度统计
+    implementation 'com.baidu.mobstat:mtj-sdk-circle:3.9.1.0'
+
+    //PickerView
+    implementation 'com.contrarywind:Android-PickerView:4.1.6'
+
+    //慧眼云
+    implementation(name: 'AndroidSDKV40ll20180903', ext: 'aar')
+
+    //
+    implementation 'com.airbnb.android:lottie:2.6.1'
+
+    //白骑士
+    implementation(name: 'bqs-crawler-cloud-sdk-2.3.0', ext: 'aar')
+
+    //鲁班
+    implementation 'top.zibin:Luban:1.1.8'
+}

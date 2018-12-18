@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="entity"
+            type="com.aib.entity.ApplyStatusEntity" />
+
+        <variable
+            name="presenter"
+            type="com.aib.view.activity.ApplyStatusActivity.Presenter" />
+
+        <variable
+            name="resource"
+            type="com.aib.net.Resource" />
+
+        <import type="com.aib.net.Status" />
+
+        <variable
+            name="retry"
+            type="com.aib.utils.RetryCallback" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.aib.view.activity.ApplyStatusActivity">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tb"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:background="@color/colorAccent"
+            app:contentInsetStart="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    style="?toolbarNavigationButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:onClick="@{presenter::back}"
+                    android:src="@drawable/ic_back_white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="审核状态"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+
+        <com.aib.widget.StatusLayout
+            isEmpty="@{resource.status==Status.EMPTY}"
+            isError="@{resource.status==Status.ERROR}"
+            isLoading="@{resource.status==Status.LOADING}"
+            isSuccess="@{resource.status==Status.SUCCESS}"
+            retry="@{retry}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@android:color/transparent"
+                    app:elevation="0dp">
+
+                    <android.support.design.widget.CollapsingToolbarLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/ic_certain_bg"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="预计可借额度"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:id="@+id/tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{String.valueOf(entity.setRandomForecastFee)}"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="16sp" />
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="0.1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/white" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="当前状态"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:id="@+id/tv_status"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:text="@{entity.statusName}"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="16sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginRight="15dp"
+                                android:drawableLeft="@drawable/ic_apply_status_tip"
+                                android:drawablePadding="10dp"
+                                android:text="根据您的信用综合评定，小钱包为您推荐以下贷款组合，同时申请可大幅度提升贷款成功率"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </android.support.design.widget.CollapsingToolbarLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="今日高通过率的口子"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+                </android.support.design.widget.AppBarLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            </android.support.design.widget.CoordinatorLayout>
+        </com.aib.widget.StatusLayout>
+    </LinearLayout>
+</layout>
+

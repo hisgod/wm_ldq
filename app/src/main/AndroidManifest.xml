@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.wm.loan">
+
+    <!-- ********************************************系统配置********************************************************************** -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- ********************************************系统配置********************************************************************** -->
+
+
+    <!-- ********************************************白骑士********************************************************************** -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- ********************************************白骑士********************************************************************** -->
+
+
+    <!-- ************************************************百度统计************************************************************** -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <!-- ************************************************百度统计************************************************************** -->
+    <application
+        android:name="com.aib.LoanApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_logo"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- ******************************************************百度统计**************************************************************** -->
+        <!-- 正式key -->
+        <meta-data
+            android:name="BaiduMobAd_STAT_ID"
+            android:value="${BaiduMobAd_STAT_ID}" />
+
+        <!-- 渠道商编号 -->
+        <meta-data
+            android:name="BaiduMobAd_CHANNEL"
+            android:value="${BaiduMobAd_CHANNEL}" />
+
+        <!-- 是否开启错误日志统计，默认为false -->
+        <meta-data
+            android:name="BaiduMobAd_EXCEPTION_LOG"
+            android:value="true" />
+
+        <!-- 日志仅在wifi网络下发送，默认为false -->
+        <meta-data
+            android:name="BaiduMobAd_ONLY_WIFI"
+            android:value="false" />
+
+        <!-- 是否获取基站位置信息 ,默认为true -->
+        <meta-data
+            android:name="BaiduMobAd_CELL_LOCATION"
+            android:value="true" />
+
+        <!-- 是否获取GPS位置信息，默认为true -->
+        <meta-data
+            android:name="BaiduMobAd_GPS_LOCATION"
+            android:value="true" />
+
+        <!-- 是否获取WIFI位置信息，默认为true -->
+        <meta-data
+            android:name="BaiduMobAd_WIFI_LOCATION"
+            android:value="true" />
+        <!-- ******************************************************百度统计**************************************************************** -->
+
+
+        <!-- ************************************************************极光推送******************************************************************* -->
+        <receiver
+            android:name="com.aib.sdk.jpush.TalkReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+
+                <category android:name="cn.com.kingwins.wmloan" />
+            </intent-filter>
+        </receiver>
+        <!-- ************************************************************极光推送******************************************************************* -->
+
+
+        <!-- 本app -->
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${package}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <service android:name="com.aib.service.InitializeService" />
+
+        <activity
+            android:name="com.aib.view.activity.SplashActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/splash_theme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.aib.view.activity.GuideActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.view.activity.LoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity
+            android:name="com.aib.view.activity.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.view.activity.ForgetPwdActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name="com.aib.view.activity.FootprintActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.view.activity.PersonalInfoActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.view.activity.MsgCenterActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.view.activity.RepaymentActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.view.activity.LoanDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.view.activity.RegisterActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.aib.view.activity.PersonalCreditActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.view.activity.PayWebActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name="com.aib.view.activity.CreditQueryActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.view.activity.ApplyStatusActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.view.activity.WebViewActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.view.activity.CustomerActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/customer_theme" />
+        <activity
+            android:name="com.aib.view.activity.TypeListActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.aib.view.activity.RelationActivity" />
+        <activity android:name="com.aib.view.activity.BindCardActivity">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name="com.aib.view.activity.WorkInfoActivity" />
+        <activity android:name="com.aib.view.activity.FinanceInfoActivity" />
+        <activity android:name="com.aib.view.activity.TbAuthenActivity" />
+        <activity android:name="com.aib.view.activity.BorrowDetailActivity" />
+        <activity android:name="com.aib.view.activity.OrderActivity" />
+        <activity android:name="com.aib.view.activity.BorrowActivity" />
+        <activity android:name="com.aib.view.activity.DelayRepaymentActivity" />
+        <activity android:name="com.aib.view.activity.TestActivity">
+
+        </activity>
+        <activity android:name="com.aib.view.activity.WaitActivity" />
+        <activity android:name="com.aib.view.activity.RepaymentStatusActivity" />
+        <activity android:name="com.aib.view.activity.OperatorActivity" />
+        <activity android:name="com.aib.view.activity.PayBindCardActivity" />
+        <activity
+            android:name="com.aib.view.activity.PostCardActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name="com.aib.view.activity.CardDetailActivity" />
+        <activity
+            android:name="com.aib.view.activity.AgreementActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.view.activity.PhotoViewActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.view.activity.FillInfoActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.view.activity.MarkActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.aib.view.activity.AddAccountActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.aib.view.activity.AccountListActivity"
+            android:launchMode="singleTask" />
+        <activity android:name="com.aib.view.activity.InputPwdActivity"></activity>
+    </application>
+
+</manifest>

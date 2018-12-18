@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.aib.view.fragment.CardFragment.Presenter" />
+
+        <variable
+            name="resource"
+            type="com.aib.net.Resource" />
+
+        <import type="com.aib.net.Status" />
+
+        <variable
+            name="retry"
+            type="com.aib.utils.RetryCallback" />
+    </data>
+
+    <com.aib.widget.StatusLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        isEmpty="@{resource.status==Status.EMPTY}"
+        isError="@{resource.status==Status.ERROR}"
+        isLoading="@{resource.status==Status.LOADING}"
+        isSuccess="@{resource.status==Status.SUCCESS}"
+        retry="@{retry}"
+        showMsg="@{resource.msg}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/tb"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/toolbar_height"
+                        android:background="@color/colorPrimary"
+                        app:contentInsetEnd="5dp"
+                        app:contentInsetStart="5dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:textColor="@android:color/white"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/tv_screen"
+                                style="?toolbarNavigationButtonStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:onClick="@{presenter::tagScreen}"
+                                android:text="筛选"
+                                android:textColor="@android:color/white" />
+                        </RelativeLayout>
+                    </android.support.v7.widget.Toolbar>
+                </android.support.design.widget.CollapsingToolbarLayout>
+            </android.support.design.widget.AppBarLayout>
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/srl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:srlDisableContentWhenLoading="true"
+                app:srlDisableContentWhenRefresh="true"
+                app:srlEnableAutoLoadMore="false">
+
+                <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srlDrawableSize="18dp"
+                    app:srlTextSizeTitle="14sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srlDrawableSize="18dp"
+                    app:srlTextSizeTitle="14sp" />
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:onClick="@{presenter::post}"
+                android:src="@drawable/ic_card_post"
+                app:layout_anchor="@+id/rv"
+                app:layout_anchorGravity="right|bottom" />
+        </android.support.design.widget.CoordinatorLayout>
+    </com.aib.widget.StatusLayout>
+</layout>

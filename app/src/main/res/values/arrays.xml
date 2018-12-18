@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--学历-->
+    <string-array name="education">
+        <item>初中</item>
+        <item>高中</item>
+        <item>中专</item>
+        <item>大专</item>
+        <item>本科及以上</item>
+    </string-array>
+
+    <!--工作年限-->
+    <string-array name="work_year">
+        <item>0-1年</item>
+        <item>1-2年</item>
+        <item>3-4年</item>
+        <item>5-6年</item>
+        <item>7-8年</item>
+        <item>9-10年</item>
+        <item>10年以上</item>
+    </string-array>
+</resources>

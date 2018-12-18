@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.aib.view.activity.TypeListActivity.Presenter" />
+
+        <variable
+            name="resource"
+            type="com.aib.net.Resource" />
+
+        <import type="com.aib.net.Status" />
+
+        <variable
+            name="retry"
+            type="com.aib.utils.RetryCallback" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.aib.view.activity.TypeListActivity">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tb"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:background="@color/colorPrimary"
+            app:contentInsetStart="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    style="?toolbarNavigationButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:onClick="@{presenter::back}"
+                    android:src="@drawable/ic_back_white" />
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_des1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/tv_des2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/iv_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+            </LinearLayout>
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/srl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srlDisableContentWhenLoading="true"
+                app:srlDisableContentWhenRefresh="true">
+
+                <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srlAccentColor="@android:color/white"
+                    app:srlDrawableSize="14dp"
+                    app:srlTextSizeTitle="14sp" />
+
+                <android.support.design.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.design.widget.AppBarLayout
+                        android:id="@+id/apl"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:background="@android:color/transparent"
+                        app:elevation="0dp"
+                        app:expanded="false">
+
+                        <android.support.design.widget.CollapsingToolbarLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:layout_scrollFlags="scroll" />
+                    </android.support.design.widget.AppBarLayout>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@android:color/white"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="0dp"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                        <com.aib.widget.StatusLayout
+                            isEmpty="@{resource.status==Status.EMPTY}"
+                            isError="@{resource.status==Status.ERROR}"
+                            isLoading="@{resource.status==Status.LOADING}"
+                            isSuccess="@{resource.status==Status.SUCCESS}"
+                            retry="@{retry}"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/rv"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </com.aib.widget.StatusLayout>
+                    </android.support.v7.widget.CardView>
+                </android.support.design.widget.CoordinatorLayout>
+
+                <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srlAccentColor="@android:color/white"
+                    app:srlDrawableSize="14dp"
+                    app:srlTextSizeTitle="14sp" />
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</layout>
+

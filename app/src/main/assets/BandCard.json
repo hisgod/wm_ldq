@@ -1,0 +1,92 @@
+[
+  {
+    "code": "ABC",
+    "name": "中国农业银行",
+    "bankCode": "103"
+  },
+  {
+    "code": "BOBJ",
+    "name": "北京银行",
+    "bankCode": "313"
+  },
+  {
+    "code": "BOC",
+    "name": "中国银行",
+    "bankCode": "104"
+  },
+  {
+    "code": "CCB",
+    "name": "中国建设银行",
+    "bankCode": "105"
+  },
+  {
+    "code": "CEB",
+    "name": "中国光大银行",
+    "bankCode": "303"
+  },
+  {
+    "code": "CIB",
+    "name": "兴业银行",
+    "bankCode": "309"
+  },
+  {
+    "code": "CMB",
+    "name": "招商银行",
+    "bankCode": "308"
+  },
+  {
+    "code": "CMBC",
+    "name": "中国民生银行",
+    "bankCode": "305"
+  },
+  {
+    "code": "CITIC",
+    "name": "中信银行",
+    "bankCode": "302"
+  },
+  {
+    "code": "COMM",
+    "name": "交通银行",
+    "bankCode": "301"
+  },
+  {
+    "code": "GDB",
+    "name": "广发银行",
+    "bankCode": "306"
+  },
+  {
+    "code": "HXB",
+    "name": "华夏银行",
+    "bankCode": "304"
+  },
+  {
+    "code": "ICBC",
+    "name": "中国工商银行",
+    "bankCode": "102"
+  },
+  {
+    "code": "PAB",
+    "name": "平安银行",
+    "bankCode": "307"
+  },
+  {
+    "code": "POSTGC",
+    "name": "邮政储蓄银行",
+    "bankCode": "403"
+  },
+  {
+    "code": "BOS",
+    "name": "上海银行",
+    "bankCode": "317"
+  },
+  {
+    "code": "SPDB",
+    "name": "上海浦东发展银行",
+    "bankCode": "310"
+  },
+  {
+    "code": "CBHB",
+    "name": "渤海银行",
+    "bankCode": "318"
+  }
+]

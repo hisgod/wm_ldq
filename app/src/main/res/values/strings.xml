@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">来点钱</string>
+    <string name="loan_detail_behavior">com.aib.widget.LoanDetailBehavior</string>
+    <string name="home_behavior">com.aib.widget.HomeToolbarBehavior</string>
+</resources>
